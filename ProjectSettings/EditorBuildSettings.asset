@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Laboratory/Scenes/Playground-Pun.unity
+    path: Assets/Laboratory/Scenes/week1-Playground-Pun.unity
     guid: 4068ef176368f3846941f53ea7e87030
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

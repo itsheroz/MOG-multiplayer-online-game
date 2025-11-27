@@ -28,7 +28,6 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
 
     void Awake()
     {
-        // Get references to the components attached to this GameObject
         _controllerLogic = GetComponent<FirstPersonController>();
         _playerInput = GetComponent<PlayerInput>();
         _assetsInput = GetComponent<StarterAssetsInputs>();
@@ -47,14 +46,13 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
             _controllerLogic.enabled = true;
             _playerInput.enabled = true;
             _assetsInput.enabled = true;
-
             Debug.Log("Start LocalPlayer: Local control enabled.");
 
             // Set the static follow target for the camera to find.
             LocalPlayerFollowTarget = _controllerLogic.CinemachineCameraTarget.transform;
             SetupCamera();
 
-            // we keep track of the localPlayer instance to prevent instanciation
+            // : we keep track of the localPlayer instance to prevent instanciation
             // when levels are synchronized
             LocalPlayerInstance = gameObject;
         }
@@ -71,10 +69,9 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
 
     private void SetupCamera()
     {
-        // --- Camera Setup for the Local Player
+        // --- Camera Setup for the Local Player ---
         // Attempt to find the Cinemachine Virtual Camera in the scene.
         var virtualCamera = FindFirstObjectByType<CinemachineCamera>();
-
         if (virtualCamera != null)
         {
             // If found, assign our follow target to it.
@@ -84,7 +81,7 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
         else
         {
             // The risk: This will fail if the camera isn't ready when the player spawns.
-            Debug.LogError("Failed! CinemachineCamera not found at the moment of spawn.");
+            Debug.LogError("Failed! CinemachineCamera not found at the moment of spawn. This is a race condition.");
         }
     }
 }

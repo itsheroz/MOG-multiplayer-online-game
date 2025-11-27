@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: -8819531544477167418}
   - component: {fileID: -6216846099488227151}
   m_Layer: 8
-  m_Name: PUN_PlayerCapsule
+  m_Name: PUN_PlayerCapsule2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b1de42abfa5bc41b5300729108e7ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shooter
-  bulletPrefab: {fileID: 4957453387985786413, guid: 5e1d916a619c7314ca9b91a570f5cb9a, type: 3}
+  bulletPrefab: {fileID: 0}
 --- !u!114 &-8819531544477167418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,4 +474,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ccc6cfea500d1f47bb58e016aa010ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PUN_Shooter
-  bulletPrefab: {fileID: 4957453387985786413, guid: 5e1d916a619c7314ca9b91a570f5cb9a, type: 3}
+  bulletPrefab: {fileID: 0}
