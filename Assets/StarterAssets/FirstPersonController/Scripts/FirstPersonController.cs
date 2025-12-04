@@ -64,7 +64,7 @@ namespace StarterAssets
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
 
-        
+
 
 #if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
@@ -80,7 +80,8 @@ namespace StarterAssets
         /// A flag to enable/disable the controller's internal Update loops.
         private bool _hasControl = true;
         /// Enables or disables the local input processing loops (Update/LateUpdate).
-        public void SetControl(bool hasControl) {
+        public void SetControl(bool hasControl)
+        {
             _hasControl = hasControl;
         }
         // --- END MODIFICATION ---
@@ -196,7 +197,7 @@ namespace StarterAssets
             }
         }
 
-        
+
 
         private void Move()
         {

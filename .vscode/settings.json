@@ -67,5 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "MOG-multiplayer-online-game.slnx"
+    "dotnet.defaultSolution": "MOG-multiplayer-online-game.slnx",
+    "dotrush.roslyn.projectOrSolutionFiles": []
 }

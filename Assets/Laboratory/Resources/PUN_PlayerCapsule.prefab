@@ -161,10 +161,14 @@ GameObject:
   - component: {fileID: -1311831697355897268}
   - component: {fileID: 355815156615533650}
   - component: {fileID: -6065289521652240970}
-  - component: {fileID: 2228697856669307164}
-  - component: {fileID: -7617194156721179375}
-  - component: {fileID: -8819531544477167418}
-  - component: {fileID: -6216846099488227151}
+  - component: {fileID: 585373448304737423}
+  - component: {fileID: 6503628185987633561}
+  - component: {fileID: 2938762579238145085}
+  - component: {fileID: 5991231101290630156}
+  - component: {fileID: -3110692602957038464}
+  - component: {fileID: -1621112829595565984}
+  - component: {fileID: -1625854609665091873}
+  - component: {fileID: -6029668648585928667}
   m_Layer: 8
   m_Name: PUN_PlayerCapsule
   m_TagString: Player
@@ -276,10 +280,11 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
-  fire: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
+  fire: 0
+  heal: 0
 --- !u!114 &437855842974204907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,6 +403,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: -6065289521652240970}
+  - {fileID: -1621112829595565984}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -425,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35184854d43b034e9d9b23c2faca8e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2228697856669307164
+--- !u!114 &585373448304737423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -434,10 +440,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6843058956415584499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 003508e15e4f2a34db0504fcf88e3107, type: 3}
+  m_Script: {fileID: 11500000, guid: c20e3e985e64bcc4f80dc23a9991b860, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
---- !u!114 &-7617194156721179375
+  m_EditorClassIdentifier: 
+--- !u!114 &6503628185987633561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -446,11 +452,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6843058956415584499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5b1de42abfa5bc41b5300729108e7ec, type: 3}
+  m_Script: {fileID: 11500000, guid: a601cfb49c020474b8db1bc994f4446c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shooter
-  bulletPrefab: {fileID: 4957453387985786413, guid: 5e1d916a619c7314ca9b91a570f5cb9a, type: 3}
---- !u!114 &-8819531544477167418
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1563717526094559943, guid: 77061c3923817854a91be5ead475d443, type: 3}
+--- !u!114 &2938762579238145085
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -459,10 +465,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6843058956415584499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1f469d34c6a370439bc71d33389d2fd, type: 3}
+  m_Script: {fileID: 11500000, guid: c29769891f1c5274cbd9e3dad6d3a459, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PUN_ShooterSelector
---- !u!114 &-6216846099488227151
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1563717526094559943, guid: 77061c3923817854a91be5ead475d443, type: 3}
+--- !u!114 &5991231101290630156
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -471,7 +478,60 @@ MonoBehaviour:
   m_GameObject: {fileID: 6843058956415584499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ccc6cfea500d1f47bb58e016aa010ec, type: 3}
+  m_Script: {fileID: 11500000, guid: bab74153f872463499a4c4ba7905d986, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PUN_Shooter
-  bulletPrefab: {fileID: 4957453387985786413, guid: 5e1d916a619c7314ca9b91a570f5cb9a, type: 3}
+  m_EditorClassIdentifier: 
+--- !u!114 &-3110692602957038464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6843058956415584499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d196865daa84c4740992e81c02537ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 100
+  _currentHealth: 0
+  healAmount: 20
+--- !u!114 &-1621112829595565984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6843058956415584499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e9a9a6a5993ec498f40f8146c3aedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PUN_PlayerHealth
+  healAmount: 20
+--- !u!114 &-1625854609665091873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6843058956415584499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8805569afee444997812917b3e3742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Healer
+  healBoxPrefab: {fileID: 18092051150739426, guid: d9a7ff660bc9c2e409811484d2720f39, type: 3}
+--- !u!114 &-6029668648585928667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6843058956415584499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c3e21a4a65ccb4a868909d44c1eab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PUN_Healer
+  healBoxPrefab: {fileID: 18092051150739426, guid: d9a7ff660bc9c2e409811484d2720f39, type: 3}

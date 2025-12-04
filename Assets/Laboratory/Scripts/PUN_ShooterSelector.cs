@@ -1,5 +1,6 @@
 using Photon.Pun;
 using UnityEngine;
+
 /// <summary>
 /// The Photon.Pun-specific implementation of the ShooterSelector.
 /// It fills in the "blanks" from the base class with Photon.Pun's API.
@@ -11,8 +12,14 @@ public class PUN_ShooterSelector : ShooterSelector
     {
         return PhotonNetwork.IsConnected;
     }
+
     protected override IShooter GetOnlineShooter()
     {
         return GetComponent<PUN_Shooter>();
+    }
+
+    protected override IHealer GetOnlineHealer()
+    {
+        return GetComponent<PUN_PlayerHealth>();
     }
 }

@@ -45,7 +45,16 @@
                 {
                     "name": "Fire",
                     "type": "Button",
-                    "id": "77697c99-8b65-4179-8016-c12ca2cc2cbe",
+                    "id": "9016b740-5a8f-415b-af90-c24ea27e44fe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Heal",
+                    "type": "Button",
+                    "id": "be9451c1-1683-402d-bde4-758a73e45254",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -231,12 +240,34 @@
                 },
                 {
                     "name": "",
-                    "id": "40295d5a-1000-40f4-96a5-9c4ac871f14a",
+                    "id": "956716e9-468e-443d-bd4e-e9ec4b29267d",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardMouse",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "547e1d2d-1098-4c90-9391-3d2c7aeb97e2",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "924877a0-16f6-440f-a36e-f568db7f640c",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
