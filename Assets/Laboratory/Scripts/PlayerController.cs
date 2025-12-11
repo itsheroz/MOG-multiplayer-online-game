@@ -5,12 +5,13 @@ public class PlayerController : MonoBehaviour
 {
     private StarterAssetsInputs _input;
     private IShooter _shooter;
-    //heal action
+    /// Add Interface of Healer action
     private IHealer _healer;
     private void Awake()
     {
         _input = GetComponent<StarterAssetsInputs>();
         _shooter = GetComponent<IShooter>();
+        /// GetComponent
         _healer = GetComponent<IHealer>();
     }
 
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
             _shooter.Fire();
         }
 
-        //After add implement heal input on StarterAssetsInputs
+        // After Add Implement heal input on StarterAssetsInputs
         if (_input != null && _healer != null && _input.heal)
         {
             _input.heal = false;

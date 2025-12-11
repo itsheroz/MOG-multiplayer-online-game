@@ -14,15 +14,17 @@ public class Projectile : MonoBehaviour
 
     [Tooltip("How many seconds before the bullet destroys itself if it hits nothing.")]
     public float Lifetime = 10.0f;
+
     public event Action OnHitAction;
 
     [Tooltip("The magnitude of the effect this projectile applies (e.g., 25 for damage, 50 for healing).")]
-    public int EffectValue = 25;
+    public int EffectValue = 10;
+    /// <summary>
     /// This event is fired when the projectile hits an object with the "MagicBox" tag.
     /// It passes the GameObject of the box that was hit.
+    /// </summary>
     public event Action<GameObject> OnMagicBoxHit;
     public event Action<GameObject, int> OnPlayerHit;
-
 
     private void Start()
     {
@@ -35,6 +37,7 @@ public class Projectile : MonoBehaviour
     {
         // This logic runs for the owner online, and for everyone offline.
         Debug.Log($"Projectile hit {other.name}");
+
         // Check if the object we collided with is a magic box.
         if (other.name.Contains("MagicBox"))
         {
@@ -42,12 +45,14 @@ public class Projectile : MonoBehaviour
             // passing along a reference to the box's GameObject.
             Debug.Log("OnMagicBoxHit is Invoke");
             OnMagicBoxHit?.Invoke(other.gameObject);
+
         }
         else if (other.CompareTag("Player"))
         {
             Debug.Log("OnPlayerHit is Invoke");
             OnPlayerHit?.Invoke(other.gameObject, EffectValue);
         }
+
         // For simplicity, we destroy the projectile when it hits anything.
         // In a real game, you might check tags or layers.
         OnHitAction?.Invoke();

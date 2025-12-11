@@ -54,7 +54,7 @@
                 {
                     "name": "Heal",
                     "type": "Button",
-                    "id": "be9451c1-1683-402d-bde4-758a73e45254",
+                    "id": "b43e6c28-eb88-4058-9519-939c63974c4e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -251,22 +251,11 @@
                 },
                 {
                     "name": "",
-                    "id": "547e1d2d-1098-4c90-9391-3d2c7aeb97e2",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Heal",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "924877a0-16f6-440f-a36e-f568db7f640c",
+                    "id": "32ed36a4-e02b-46f1-9cb2-0f91641d2374",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";KeyboardMouse",
                     "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false

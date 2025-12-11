@@ -9,26 +9,28 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerController))]
 public abstract class ShooterSelector : MonoBehaviour
 {
+    // --- Template Methods to be implemented by child classes ---
+
     /// <summary>
     /// Child classes must implement this to check if their specific network library is active.
     /// </summary>
     protected abstract bool IsNetworkActive();
 
-    /// <summary>
+
     /// Child classes must implement this to provide their specific online shooter component.
-    /// </summary>
     protected abstract IShooter GetOnlineShooter();
+    /// Child classes must implement this to provide their specific online Healer component.
     protected abstract IHealer GetOnlineHealer();
+
     // --- The main algorithm, defined once in the base class ---
     private void Awake()
     {
         PlayerController controller = GetComponent<PlayerController>();
         IShooter offlineShooter = GetComponent<Shooter>();
+        IHealer offlineHealer = GetComponent<Healer>();
+
         // Let the child class provide the correct online shooter.
         IShooter onlineShooter = GetOnlineShooter();
-
-        //heal
-        IHealer offlineHealer = GetComponent<IHealer>();
         IHealer onlineHealer = GetOnlineHealer();
 
         // Let the child class determine if we are in an online mode.
@@ -38,6 +40,7 @@ public abstract class ShooterSelector : MonoBehaviour
             (offlineShooter as MonoBehaviour).enabled = false;
             (onlineShooter as MonoBehaviour).enabled = true;
             controller.SetShooter(onlineShooter);
+
             /// Healer Setting
             (offlineHealer as MonoBehaviour).enabled = false;
             (onlineHealer as MonoBehaviour).enabled = true;
@@ -49,6 +52,7 @@ public abstract class ShooterSelector : MonoBehaviour
             (onlineShooter as MonoBehaviour).enabled = false;
             (offlineShooter as MonoBehaviour).enabled = true;
             controller.SetShooter(offlineShooter);
+
             /// Healer Setting
             (onlineHealer as MonoBehaviour).enabled = false;
             (offlineHealer as MonoBehaviour).enabled = true;

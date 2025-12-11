@@ -7,23 +7,34 @@ public class UIPlayerInfoManager : MonoBehaviour
     public Slider _healthSlider;
     public Slider _sterminaSlider;
     public TextMeshProUGUI _TextNickName;
-    private PlayerHealth _targetPlayerHealth;
+
+    /// <summary>
+    /// Add PlayerHealth
+    /// </summary>
+    PlayerHealth _targetPlayerHealth;
+    PlayerStamina _targetPlayerStamina;
 
     public void Awake()
     {
-        /// /// Get Component In Parent
+        /// /// Get Component In Parent 
         _targetPlayerHealth = GetComponentInParent<PlayerHealth>();
+        _targetPlayerStamina = GetComponentInParent<PlayerStamina>();
     }
+
     private void OnEnable()
     {
         /// Register On Change Event
         _targetPlayerHealth.OnHealthChanged += UpdateHealthBar;
+        _targetPlayerStamina.OnStaminaChanged += UpdateSterminaBar;
     }
+
     private void OnDisable()
     {
         /// Remove On Change Event
         _targetPlayerHealth.OnHealthChanged -= UpdateHealthBar;
+        _targetPlayerStamina.OnStaminaChanged -= UpdateSterminaBar;
     }
+
     public void SetLocalUI()
     {
         //UI Control
@@ -46,5 +57,4 @@ public class UIPlayerInfoManager : MonoBehaviour
     {
         _sterminaSlider.value = (float)current / max;
     }
-
 }

@@ -20,6 +20,6 @@ public class PUN_ShooterSelector : ShooterSelector
 
     protected override IHealer GetOnlineHealer()
     {
-        return GetComponent<PUN_PlayerHealth>();
+        return GetComponent<PUN_Healer>();
     }
 }

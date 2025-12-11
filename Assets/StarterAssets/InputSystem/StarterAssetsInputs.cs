@@ -53,11 +53,9 @@ namespace StarterAssets
         {
             fire = value.isPressed;
         }
-		
-		//<summary>
-		/// Add Player can Heal
-		/// </summary>
+
 		public bool heal;
+
 		public void OnHeal(InputValue value)
 		{
 			heal = value.isPressed;

@@ -31,24 +31,40 @@ public class PUN_Projectile : MonoBehaviourPun
         }
     }
 
+    /// <summary>
+    /// Subscribes to the core projectile logic's events when this component is enabled.
+    /// </summary>
     private void OnEnable()
     {
         if (!photonView.IsMine)
             return;
+
         // Start listening for the OnMagicBoxHit event from the core projectile logic.
         _projectileLogic.OnMagicBoxHit += HandleMagicBoxHit;
         _projectileLogic.OnPlayerHit += HandlePlayerHit;
     }
+
+    /// <summary>
+    /// Unsubscribes from events when this component is disabled.
+    /// This is a crucial step to prevent memory leaks.
+    /// </summary>
     private void OnDisable()
     {
         if (!photonView.IsMine)
             return;
-        // Stop listening for the event to avoid errors and memory leaks.
+
+        // Stop listening for the event to avoid errors and memory leaks when the object is destroyed.
         _projectileLogic.OnMagicBoxHit -= HandleMagicBoxHit;
         _projectileLogic.OnPlayerHit -= HandlePlayerHit;
     }
+
+    /// <summary>
+    /// This method is called when the projectile's OnMagicBoxHit event is fired.
+    /// </summary>
+    /// <param name="boxObject">The GameObject of the box that was hit.</param>
     private void HandleMagicBoxHit(GameObject boxObject)
     {
+        Debug.Log("HandleMagicBoxHit is Call | photonView.isMine : " + photonView.IsMine);
         // Authority Check: When the event is received, only the owner of the projectile
         // should be allowed to initiate a network action.
         if (photonView.IsMine)
@@ -62,24 +78,28 @@ public class PUN_Projectile : MonoBehaviourPun
             }
         }
     }
+
+    /// <summary>
     /// This method is now the "Smart Delivery Driver".
     /// It checks the effectValue to decide which RPC to call.
+    /// </summary>
     private void HandlePlayerHit(GameObject playerObject, int effectValue)
     {
         if (!photonView.IsMine) return;
+
         PhotonView targetPhotonView = playerObject.GetComponentInParent<PhotonView>();
         if (targetPhotonView == null) return;
+
+
         if (effectValue < 0)
         {
             // Negative value means DAMAGE
-            targetPhotonView.RPC(nameof(PUN_PlayerHealth.RpcTakeDamage),
-            targetPhotonView.Owner, effectValue);
+            targetPhotonView.RPC(nameof(PUN_PlayerHealth.RpcTakeDamage), targetPhotonView.Owner, effectValue);
         }
         else if (effectValue > 0)
         {
             // Positive value means HEALING
-            targetPhotonView.RPC(nameof(PUN_PlayerHealth.RpcReceiveHeal),
-            targetPhotonView.Owner, effectValue);
+            targetPhotonView.RPC(nameof(PUN_PlayerHealth.RpcReceiveHeal), targetPhotonView.Owner, effectValue);
         }
     }
 }

@@ -22,16 +22,21 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
     private FirstPersonController _controllerLogic;
     private PlayerInput _playerInput;
     private StarterAssetsInputs _assetsInput;
-    private UIPlayerInfoManager _playerInfoManager;
 
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
 
+    /// <summary>
+    /// Add reference UI playerInfo
+    /// </summary>
+    private UIPlayerInfoManager _playerInfoManager;
     void Awake()
     {
         _controllerLogic = GetComponent<FirstPersonController>();
         _playerInput = GetComponent<PlayerInput>();
         _assetsInput = GetComponent<StarterAssetsInputs>();
+
+        /// Get Component In Children 
         _playerInfoManager = GetComponentInChildren<UIPlayerInfoManager>();
     }
 
@@ -54,14 +59,8 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
             LocalPlayerFollowTarget = _controllerLogic.CinemachineCameraTarget.transform;
             SetupCamera();
 
-            if (_playerInfoManager != null)
-            {
-                _playerInfoManager.SetLocalUI();
-            }
-            else
-            {
-                Debug.LogWarning("UIPlayerInfoManager was not found in children of the player. Local UI will not be set automatically.", this);
-            }
+            // Setup LocalUI
+            _playerInfoManager.SetLocalUI();
 
             // : we keep track of the localPlayer instance to prevent instanciation
             // when levels are synchronized
