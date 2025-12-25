@@ -27,14 +27,14 @@ RectTransform:
   m_GameObject: {fileID: 304678266325179161}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4153, y: 1.4153, z: 1.4153}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6859143504924956405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -314.3, y: 382}
+  m_AnchoredPosition: {x: -708, y: 228}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5604869352061105289
@@ -65,7 +65,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Time =
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -148,7 +150,7 @@ GameObject:
   - component: {fileID: 6523041930696578588}
   - component: {fileID: 1538965051114398127}
   - component: {fileID: 541191208454000979}
-  - component: {fileID: 3342157775604974064}
+  - component: {fileID: 5340556287002399707}
   m_Layer: 5
   m_Name: Canvas-GameTimer
   m_TagString: Untagged
@@ -239,7 +241,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3342157775604974064
+--- !u!114 &5340556287002399707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,7 +250,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5473966424800248501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e3fd253a1b92864b825c3a16c6a2cf5, type: 3}
+  m_Script: {fileID: 11500000, guid: 393652f94934c5a4ca9dba50a4c12adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTimer
   Text: {fileID: 5543796574293124121}

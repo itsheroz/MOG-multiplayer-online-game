@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5492896697095742907}
   - component: {fileID: 7641255918851805332}
   - component: {fileID: 700687675}
+  - component: {fileID: 3109427355160652618}
   m_Layer: 0
   m_Name: --PUN_NetworkManager--
   m_TagString: Untagged
@@ -45,11 +46,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5eed78acd881a46b326df83c874254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoConnect: 1
+  AutoConnect: 0
   Version: 1
   MaxPlayers: 4
   playerTTL: -1
-  GamePlayerPrefab: {fileID: 0}
+  GamePlayerPrefab: {fileID: 6843058956415584499, guid: c7a0189fb26e2564b81e4ce7fa5ba253,
+    type: 3}
+  _sessionServicePrefab: {fileID: 3693273609665409383, guid: 3b74d3534a3d3c94a9a6823861246314,
+    type: 3}
+  GameTimerCanvas: {fileID: 0}
 --- !u!114 &700687675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,3 +87,16 @@ MonoBehaviour:
   Others: 0
   Buttons: 0
   ExpectedUsers: 0
+--- !u!114 &3109427355160652618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5492896697095742905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173f0b237bfbb9048904f8b8d0fdf9d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameDataManager
+  UseOfflineMode: 0

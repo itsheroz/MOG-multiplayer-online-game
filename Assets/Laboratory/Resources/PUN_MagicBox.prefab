@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 8340156996749195778}
   - component: {fileID: -8157912160678825982}
   - component: {fileID: 3064734292814311981}
+  - component: {fileID: 4447002255044783848}
+  - component: {fileID: 1714419053543405050}
   m_Layer: 0
   m_Name: PUN_MagicBox
   m_TagString: Untagged
@@ -144,6 +146,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 2343490762499385883}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f187fe3c6201d74b9375190a7812982, type: 3}
+  m_Script: {fileID: 11500000, guid: 97e84138fe801944fb7f5c55ea1d4925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PUN_RPCsNetworkAction
+--- !u!114 &4447002255044783848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2343490762499385883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b55a0320eb088484bb408549b1779be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PingPongMove
+  _endPositionOffset: {x: 0, y: 5, z: 0}
+  _speed: 2
+--- !u!114 &1714419053543405050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2343490762499385883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321c7319ae07c7f4d8981344110cb04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PUN_PingPongDriver
