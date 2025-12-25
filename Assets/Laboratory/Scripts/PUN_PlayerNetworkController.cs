@@ -53,8 +53,7 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
             _controllerLogic.enabled = true;
             _playerInput.enabled = true;
             _assetsInput.enabled = true;
-            Debug.Log("Start LocalPlayer: Local control enabled.");
-
+            
             // Set the static follow target for the camera to find.
             LocalPlayerFollowTarget = _controllerLogic.CinemachineCameraTarget.transform;
             SetupCamera();

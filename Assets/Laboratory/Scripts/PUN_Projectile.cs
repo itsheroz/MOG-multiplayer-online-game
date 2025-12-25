@@ -64,7 +64,6 @@ public class PUN_Projectile : MonoBehaviourPun
     /// <param name="boxObject">The GameObject of the box that was hit.</param>
     private void HandleMagicBoxHit(GameObject boxObject)
     {
-        Debug.Log("HandleMagicBoxHit is Call | photonView.isMine : " + photonView.IsMine);
         // Authority Check: When the event is received, only the owner of the projectile
         // should be allowed to initiate a network action.
         if (photonView.IsMine)
