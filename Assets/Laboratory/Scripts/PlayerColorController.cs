@@ -108,16 +108,7 @@ public abstract class PlayerColorController : MonoBehaviour
             {
                 // If it's the local player -> Pick a new random color and save it.
                 Debug.Log($"[Player {OwnerID}] No color found. Requesting new color...");
-                
-                // Use OwnerID as seed to ensure each player gets a different random color
-                // Save the current random state
-                Random.State oldState = Random.state;
-                // Set seed based on OwnerID to ensure unique colors per player
-                Random.InitState(OwnerID);
                 int randomColor = Random.Range(1, 8);
-                // Restore the original random state
-                Random.state = oldState;
-                
                 Debug.Log($"[randomColor] is {randomColor}");
 
                 // IMPORTANT: Request the server to save the property. 

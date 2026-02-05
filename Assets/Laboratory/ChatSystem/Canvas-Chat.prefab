@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 7786594578460702478}
   - component: {fileID: 7231132919525946496}
   - component: {fileID: 4429213327037323335}
-  - component: {fileID: 1492179977048351760}
+  - component: {fileID: -4379739157080116180}
   m_Layer: 5
   m_Name: Canvas-Chat
   m_TagString: Untagged
@@ -580,8 +580,9 @@ MonoBehaviour:
   _sendButton: {fileID: 1584006294850071886}
   _scrollRect: {fileID: 6256639961003895141}
   _chatContent: {fileID: 6009654557367172386}
-  _messagePrefab: {fileID: 4840383177072250457, guid: eeeae9ca315b38e40ae5aff545871420, type: 3}
---- !u!114 &1492179977048351760
+  _messagePrefab: {fileID: 4840383177072250457, guid: eeeae9ca315b38e40ae5aff545871420,
+    type: 3}
+--- !u!114 &-4379739157080116180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -590,7 +591,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2156904857066898764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b20910863acea941bdc852457f6c32b, type: 3}
+  m_Script: {fileID: 11500000, guid: c8cf2948cb82b8e4b9b07dc89c7064de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PUN_ChatConnector
 --- !u!1 &2390876561081155001

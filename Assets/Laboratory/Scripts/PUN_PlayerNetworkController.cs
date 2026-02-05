@@ -3,6 +3,7 @@ using StarterAssets;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Handles the INITIAL SETUP of the player object when it spawns using PUN2.
@@ -38,8 +39,19 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
 
         /// Get Component In Children 
         _playerInfoManager = GetComponentInChildren<UIPlayerInfoManager>();
+        DontDestroyOnLoad(gameObject);
     }
 
+    private void OnEnable(){
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnDisable(){
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode){
+        Debug.Log($"[System] Moved to New Scene: {scene.name}");
+        SetupCamera();
+    }
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
         Debug.Log(info.photonView.Owner.ToString());
@@ -81,6 +93,7 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
         // --- Camera Setup for the Local Player ---
         // Attempt to find the Cinemachine Virtual Camera in the scene.
         var virtualCamera = FindFirstObjectByType<CinemachineCamera>();
+
         if (virtualCamera != null)
         {
             // If found, assign our follow target to it.
@@ -90,7 +103,7 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
         else
         {
             // The risk: This will fail if the camera isn't ready when the player spawns.
-            Debug.LogError("Failed! CinemachineCamera not found at the moment of spawn. This is a race condition.");
+            Debug.LogError("Failed! CinemachineCamera not found at the moment of spawn.");
         }
     }
 }

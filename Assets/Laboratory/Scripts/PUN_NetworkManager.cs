@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Photon.Pun;
-using Photon.Pun.UtilityScripts;
+using UnityEngine.SceneManagement;
 using Photon.Realtime;
 
 /// <summary>
@@ -8,8 +8,10 @@ using Photon.Realtime;
 /// (Player Characters, Session Service) when using Photon Unity Networking (PUN).
 /// It extends ConnectAndJoinRandom for simple connection management.
 /// </summary>
-public class PUN_NetworkManager : ConnectAndJoinRandom
+public class PUN_NetworkManager : PUN_ConnectionBase
 {
+    public string TargetSceneName = "GameScene";
+    GameObject serviceObj;
     public static PUN_NetworkManager singleton; // Singleton instance for easy global access.
 
     [Header("Spawn Info")]
@@ -24,8 +26,10 @@ public class PUN_NetworkManager : ConnectAndJoinRandom
     public GameObject GameTimerCanvas; // UI component that manages the game countdown timer.
 
     // Assigns the Singleton instance and performs initial setup.
-    public void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         singleton = this;
 
         // Deactivate the Game Timer UI initially to prevent it from running prematurely or causing errors 
@@ -36,31 +40,50 @@ public class PUN_NetworkManager : ConnectAndJoinRandom
         }
     }
 
-    // Photon Callback: Called when a remote player successfully joins the current room.
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        base.OnPlayerEnteredRoom(newPlayer);
-        Debug.Log("New Player. " + newPlayer.ToString());
+    protected override void Start() {
+        base.Start(); 
+        
+        if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.InRoom) {
+            UpdateState(NetworkConnectionState.InRoom);
+            Debug.Log("<color=green>[PUN Manager] Detected active connection in Start. Spawning objects...</color>");
+            SpawnGameplayObjects();
+        } else {
+            Debug.LogWarning("[PUN Manager] Start called but not in room/connected. Waiting for connection..."); 
+        }
     }
 
-    // Photon Callback: Called when the local client successfully joins a room.
-    public override void OnJoinedRoom()
+    public override void OnDisconnected(DisconnectCause cause){
+        base.OnDisconnected(cause);
+
+        SceneManager.LoadScene(TargetSceneName);
+        
+        Destroy(serviceObj.gameObject);
+        Destroy(this.gameObject);
+    }
+    public override void SpawnGameplayObjects()
     {
-        base.OnJoinedRoom();
-
-        Debug.Log($"Joined room '{PhotonNetwork.CurrentRoom.Name}'. Spawning player...");
-
-        // 1. Player Character Instantiation
-        if (PUN_PlayerNetworkController.LocalPlayerInstance == null)
+        // 1. Instantiate the player character.
+        if (GamePlayerPrefab != null && PUN_PlayerNetworkController.LocalPlayerInstance == null)
         {
-            Debug.Log("We are Instantiating LocalPlayer from " + SceneManagerHelper.ActiveSceneName);
-            // Instantiate the player character over the network for the local client.
-            PhotonNetwork.Instantiate(GamePlayerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+            float randomX = Random.Range(-2f, 2f);
+            PhotonNetwork.Instantiate(GamePlayerPrefab.name, new Vector3(randomX, 5f, 0f), Quaternion.identity, 0);
         }
         else
         {
             Debug.Log("Ignoring scene load for " + SceneManagerHelper.ActiveSceneName);
         }
+
+        // 2. Initialize scene-specific services.
+        SetupSceneObjects();
+
+        // 3. Notify listeners that gameplay setup is complete.
+        NotifyReadyToSpawn();
+    }
+
+    private void SetupSceneObjects()
+    {
+        // Setup UI or Managers here (e.g., Camera tracking).
+        Debug.Log("[PUN Manager] Scene Objects configured.");
 
         // 2. Game Data Session Service Instantiation
         // Ensure the session service is created only once upon entering the room.
@@ -79,27 +102,6 @@ public class PUN_NetworkManager : ConnectAndJoinRandom
         if (GameTimerCanvas != null)
         {
             GameTimerCanvas.SetActive(true);
-        }
-    }
-
-    // --- Added Section: Simple GUI for connection ---
-    private void OnGUI()
-    {
-        // Set basic GUI styles for better readability.
-        GUI.skin.label.fontSize = 20;
-        GUI.skin.button.fontSize = 20;
-
-        // Display the current network connection state.
-        GUILayout.Label("Status: " + PhotonNetwork.NetworkClientState);
-
-        // Show the Connect button only when disconnected.
-        if (!PhotonNetwork.IsConnected && !PhotonNetwork.IsConnectedAndReady)
-        {
-            if (GUILayout.Button("Connect Now", GUILayout.Width(200), GUILayout.Height(50)))
-            {
-                Debug.Log("Connect button clicked.");
-                ConnectNow(); // Calls the base method to start the connection process (Connect and Join Random).
-            }
         }
     }
 }

@@ -186,6 +186,6 @@ public class GameTimer : MonoBehaviour
         if (timeInSeconds < 0) timeInSeconds = 0; // Prevent negative time display.
 
         TimeSpan ts = TimeSpan.FromSeconds(timeInSeconds);
-        return string.Format("Time {0:00}:{1:00}", ts.Minutes, ts.Seconds);
+        return string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
     }
 }
