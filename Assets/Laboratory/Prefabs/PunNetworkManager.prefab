@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &610547638753462182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 610547638753462180}
+  - component: {fileID: 610547638753462181}
+  - component: {fileID: 610547638753462186}
+  m_Layer: 0
+  m_Name: PunNetworkManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &610547638753462180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610547638753462182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &610547638753462181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610547638753462182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5eed78acd881a46b326df83c874254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoConnect: 1
+  Version: 1
+  MaxPlayers: 4
+  playerTTL: -1
+  GamePlayerPrefab: {fileID: 21, guid: 4b91f3fd7431eba4ea8858ff77358518, type: 3}
+  isGameStart: 0
+  isFirstSetting: 0
+  isGameOver: 0
+  isLoadLevel: 0
+  HealingPrefab: {fileID: 24, guid: f8d97898c8279c24b9dc20dc4b2a1417, type: 3}
+  numberOfHealing: 5
+  m_CountDownDropHeal: 10
+  RocketPrefab: {fileID: 6524481692388480801, guid: 1b668c4ea2c8e2a418e11f6e3d1756e0,
+    type: 3}
+  SceneCamera: {fileID: 0}
+--- !u!114 &610547638753462186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610547638753462182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62880f27e95abf2418fd79e9d9d568b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GuiOffset:
+    serializedVersion: 2
+    x: 250
+    y: 0
+    width: 300
+    height: 300
+  DontDestroy: 0
+  ServerTimestamp: 0
+  DetailedConnection: 0
+  Server: 1
+  AppVersion: 1
+  UserId: 1
+  Room: 1
+  RoomProps: 1
+  EventsIn: 0
+  LocalPlayer: 1
+  PlayerProps: 1
+  Others: 1
+  Buttons: 0
+  ExpectedUsers: 0

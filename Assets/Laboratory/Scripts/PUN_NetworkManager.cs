@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Photon.Pun;
-using UnityEngine.SceneManagement;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Handles the core network connection, room joining logic, and instantiating essential game objects 
@@ -10,8 +10,6 @@ using Photon.Realtime;
 /// </summary>
 public class PUN_NetworkManager : PUN_ConnectionBase
 {
-    public string TargetSceneName = "GameScene";
-    GameObject serviceObj;
     public static PUN_NetworkManager singleton; // Singleton instance for easy global access.
 
     [Header("Spawn Info")]
@@ -25,6 +23,10 @@ public class PUN_NetworkManager : PUN_ConnectionBase
     [Tooltip("Reference to the UI Canvas/GameObject that holds the GameTimer script.")]
     public GameObject GameTimerCanvas; // UI component that manages the game countdown timer.
 
+    public string TargetSceneName = "GameScene"; // Name of the scene to load
+
+
+    GameObject serviceObj;
     // Assigns the Singleton instance and performs initial setup.
     protected override void Awake()
     {
@@ -40,26 +42,27 @@ public class PUN_NetworkManager : PUN_ConnectionBase
         }
     }
 
-    protected override void Start() {
-        base.Start(); 
-        
-        if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.InRoom) {
+    protected override void Start()
+    {
+        base.Start();
+
+        // Check if: 1. Connected to server (Ready) and 2. In a room (InRoom)
+        // To prevent duplicate spawning or spawning while offline.
+        if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.InRoom)
+        {
+            // Explicitly update the internal state to 'InRoom' 
+            // because OnJoinedRoom callback won't trigger again after a scene load.
             UpdateState(NetworkConnectionState.InRoom);
+
             Debug.Log("<color=green>[PUN Manager] Detected active connection in Start. Spawning objects...</color>");
             SpawnGameplayObjects();
-        } else {
-            Debug.LogWarning("[PUN Manager] Start called but not in room/connected. Waiting for connection..."); 
+        }
+        else
+        {
+            Debug.LogWarning("[PUN Manager] Start called but not in room/connected. Waiting for connection...");
         }
     }
 
-    public override void OnDisconnected(DisconnectCause cause){
-        base.OnDisconnected(cause);
-
-        SceneManager.LoadScene(TargetSceneName);
-        
-        Destroy(serviceObj.gameObject);
-        Destroy(this.gameObject);
-    }
     public override void SpawnGameplayObjects()
     {
         // 1. Instantiate the player character.
@@ -89,7 +92,7 @@ public class PUN_NetworkManager : PUN_ConnectionBase
         // Ensure the session service is created only once upon entering the room.
         if (GameDataSessionManager.Instance.Service == null)
         {
-            GameObject serviceObj = Instantiate(_sessionServicePrefab);
+            serviceObj = Instantiate(_sessionServicePrefab);
 
             // Important: Keep the service object alive across scene changes.
             DontDestroyOnLoad(serviceObj);
@@ -104,4 +107,15 @@ public class PUN_NetworkManager : PUN_ConnectionBase
             GameTimerCanvas.SetActive(true);
         }
     }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        base.OnDisconnected(cause);
+
+        SceneManager.LoadScene(TargetSceneName);
+
+        Destroy(serviceObj.gameObject);
+        Destroy(this.gameObject);
+    }
+    
 }
