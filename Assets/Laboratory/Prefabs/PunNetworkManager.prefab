@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 610547638753462180}
   - component: {fileID: 610547638753462181}
-  - component: {fileID: 610547638753462186}
+  - component: {fileID: 5691895752252008832}
   m_Layer: 0
   m_Name: PunNetworkManager
   m_TagString: Untagged
@@ -59,7 +59,8 @@ MonoBehaviour:
   RocketPrefab: {fileID: 6524481692388480801, guid: 1b668c4ea2c8e2a418e11f6e3d1756e0,
     type: 3}
   SceneCamera: {fileID: 0}
---- !u!114 &610547638753462186
+  loaderAnime: {fileID: 0}
+--- !u!114 &5691895752252008832
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,14 +81,14 @@ MonoBehaviour:
   DontDestroy: 0
   ServerTimestamp: 0
   DetailedConnection: 0
-  Server: 1
-  AppVersion: 1
+  Server: 0
+  AppVersion: 0
   UserId: 1
   Room: 1
   RoomProps: 1
   EventsIn: 0
   LocalPlayer: 1
   PlayerProps: 1
-  Others: 1
+  Others: 0
   Buttons: 0
   ExpectedUsers: 0

@@ -74,7 +74,6 @@ public class PUN_Projectile : MonoBehaviourPun
             {
                 // Tell the box to start its color change process across the network.
                 magicBox.InitiateColorChange();
-                magicBox.InitiateLevelTransition();
             }
         }
     }

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c95ae7899ba9948b8fa4df14c03fde, type: 3}
+  m_Name: Center-Compositer-Behavior
+  m_EditorClassIdentifier: 
+  behaviors:
+  - {fileID: 11400000, guid: 4cf1c97547731cc4894d61a8a40ba2e9, type: 2}
+  - {fileID: 11400000, guid: 7f7ff04b66a798e47acdface6790f82e, type: 2}
+  - {fileID: 11400000, guid: 18bef52bddd09dd4ea8415d9039acd74, type: 2}
+  - {fileID: 11400000, guid: df3285b00a77c914fb033a7229c0fe3d, type: 2}
+  weights:
+  - 1
+  - 1
+  - 3
+  - 0.2

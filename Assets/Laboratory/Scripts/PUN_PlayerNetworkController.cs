@@ -1,10 +1,8 @@
-﻿using Photon.Pun;
-using Photon.Realtime;
+using Photon.Pun;
 using StarterAssets;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Handles the INITIAL SETUP of the player object when it spawns using PUN2.
@@ -28,9 +26,6 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
 
-    //team mesh
-    public MeshRenderer _teamReander;
-
     /// <summary>
     /// Add reference UI playerInfo
     /// </summary>
@@ -43,37 +38,13 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
 
         /// Get Component In Children 
         _playerInfoManager = GetComponentInChildren<UIPlayerInfoManager>();
-
-        // #Critical
-        // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
-        DontDestroyOnLoad(gameObject);
-    }
-
-    private void OnEnable()
-    {
-        // Subscribe to the scene loaded event.
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        // Unsubscribe to prevent errors or memory leaks.
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log($"[System] Moved to new scene: {scene.name}");
-
-        // Perform re-setup here instead of Start().
-        SetupCamera();
     }
 
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
         Debug.Log(info.photonView.Owner.ToString());
         Debug.Log(info.photonView.ViewID.ToString());
-        Debug.Log("PUN instance");
+
         // photonView.IsMine is the PUN2 equivalent of isLocalPlayer or IsOwner
         if (photonView.IsMine)
         {
@@ -86,7 +57,6 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
             // Set the static follow target for the camera to find.
             LocalPlayerFollowTarget = _controllerLogic.CinemachineCameraTarget.transform;
             SetupCamera();
-            Debug.Log("success");
 
             // Setup LocalUI
             _playerInfoManager.SetLocalUI();
@@ -102,15 +72,9 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
             _controllerLogic.enabled = false;
             _playerInput.enabled = false;
             _assetsInput.enabled = false;
-
-            //setting mesh team
-            if (_teamReander != null)
-                SettingPlayerTeam(info.Sender);
-
             Debug.Log("Proxy character. Local control disabled.");
         }
     }
-
 
     private void SetupCamera()
     {
@@ -127,16 +91,6 @@ public class PUN_PlayerNetworkController : MonoBehaviourPun, IPunInstantiateMagi
         {
             // The risk: This will fail if the camera isn't ready when the player spawns.
             Debug.LogError("Failed! CinemachineCamera not found at the moment of spawn. This is a race condition.");
-        }
-    }
-    //lobby team mesh
-    private void SettingPlayerTeam(Player Sender)
-    {
-        Photon.Pun.UtilityScripts.PhotonTeam _currentTeam = Photon.Pun.UtilityScripts.PhotonTeamExtensions.GetPhotonTeam(Sender);
-        if(_currentTeam != null)
-        {
-            int colors = (int)_currentTeam.Code;
-            _teamReander.material.color = PunGameSetting.GetColor(colors);
         }
     }
 }

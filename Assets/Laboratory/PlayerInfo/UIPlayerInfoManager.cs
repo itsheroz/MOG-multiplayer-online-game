@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,44 +19,20 @@ public class UIPlayerInfoManager : MonoBehaviour
         /// /// Get Component In Parent 
         _targetPlayerHealth = GetComponentInParent<PlayerHealth>();
         _targetPlayerStamina = GetComponentInParent<PlayerStamina>();
-
-        if (_targetPlayerHealth == null)
-        {
-            Debug.LogWarning($"{nameof(UIPlayerInfoManager)}: PlayerHealth component not found in parents of {gameObject.name}. UI will not update health.");
-        }
-
-        if (_targetPlayerStamina == null)
-        {
-            Debug.LogWarning($"{nameof(UIPlayerInfoManager)}: PlayerStamina component not found in parents of {gameObject.name}. UI will not update stamina.");
-        }
     }
 
     private void OnEnable()
     {
         /// Register On Change Event
-        if (_targetPlayerHealth != null)
-        {
-            _targetPlayerHealth.OnHealthChanged += UpdateHealthBar;
-        }
-
-        if (_targetPlayerStamina != null)
-        {
-            _targetPlayerStamina.OnStaminaChanged += UpdateSterminaBar;
-        }
+        _targetPlayerHealth.OnHealthChanged += UpdateHealthBar;
+        _targetPlayerStamina.OnStaminaChanged += UpdateSterminaBar;
     }
 
     private void OnDisable()
     {
         /// Remove On Change Event
-        if (_targetPlayerHealth != null)
-        {
-            _targetPlayerHealth.OnHealthChanged -= UpdateHealthBar;
-        }
-
-        if (_targetPlayerStamina != null)
-        {
-            _targetPlayerStamina.OnStaminaChanged -= UpdateSterminaBar;
-        }
+        _targetPlayerHealth.OnHealthChanged -= UpdateHealthBar;
+        _targetPlayerStamina.OnStaminaChanged -= UpdateSterminaBar;
     }
 
     public void SetLocalUI()
